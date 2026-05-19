@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Andreza Pimentel",
+  "description": "Espaço terapêutico de Andreza Pimentel, Psicóloga Clínica — CRP 02/17292.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
