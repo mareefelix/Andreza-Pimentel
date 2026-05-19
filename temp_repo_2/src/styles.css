@@ -1,0 +1,130 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-cream: var(--cream);
+  --color-earth: var(--earth);
+  --color-mist: var(--mist);
+
+  --font-serif: "Cormorant Garamond", "Cormorant", serif;
+  --font-script: "Pinyon Script", "Great Vibes", cursive;
+  --font-sans: "Jost", "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Palette inspired by botanical editorial: mint, off-white, sage, earth */
+  --sage: oklch(0.91 0.035 155);        /* #CCE7D9 base mint */
+  --sage-deep: oklch(0.62 0.04 155);    /* grey-green */
+  --cream: oklch(0.975 0.012 90);       /* warm off-white */
+  --earth: oklch(0.55 0.06 60);         /* subtle terracotta-brown */
+  --mist: oklch(0.96 0.018 155);        /* very pale mint */
+
+  --background: oklch(0.985 0.008 100);  /* warm off-white canvas */
+  --foreground: oklch(0.28 0.02 150);    /* deep muted forest */
+
+  --card: oklch(0.99 0.006 100);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.45 0.04 155);       /* deep sage */
+  --primary-foreground: var(--cream);
+  --secondary: var(--sage);
+  --secondary-foreground: oklch(0.28 0.02 150);
+
+  --muted: oklch(0.95 0.012 130);
+  --muted-foreground: oklch(0.48 0.025 145);
+
+  --accent: var(--earth);
+  --accent-foreground: var(--cream);
+
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: var(--cream);
+
+  --border: oklch(0.88 0.02 145);
+  --input: oklch(0.88 0.02 145);
+  --ring: oklch(0.62 0.04 155);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 80% 0%, color-mix(in oklab, var(--sage) 38%, transparent), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 90%, color-mix(in oklab, var(--mist) 60%, transparent), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: oklch(0.25 0.025 150);
+  }
+
+  .font-script { font-family: var(--font-script); font-weight: 400; }
+  .font-serif { font-family: var(--font-serif); }
+}
+
+@layer utilities {
+  .paper-texture {
+    background-image:
+      radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--sage) 10%, transparent) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--earth) 6%, transparent) 0, transparent 45%);
+  }
+  .hairline { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
