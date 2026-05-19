@@ -13,6 +13,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    base: './',
     server: {
       hmr: process.env.DISABLE_HMR !== 'true' ? true : false,
       watch: process.env.DISABLE_HMR === 'true' ? null : undefined,
